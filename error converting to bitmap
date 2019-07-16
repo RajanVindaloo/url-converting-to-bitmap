@@ -1,0 +1,45 @@
+E/AndroidRuntime: FATAL EXCEPTION: main
+    Process: org.sos.com, PID: 20681
+    android.os.NetworkOnMainThreadException
+        at android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork(StrictMode.java:1513)
+        at com.android.org.conscrypt.Platform.blockGuardOnNetwork(Platform.java:415)
+        at com.android.org.conscrypt.ConscryptFileDescriptorSocket.shutdownAndFreeSslNative(ConscryptFileDescriptorSocket.java:1005)
+        at com.android.org.conscrypt.ConscryptFileDescriptorSocket.close(ConscryptFileDescriptorSocket.java:1000)
+        at com.android.okhttp.internal.Util.closeQuietly(Util.java:86)
+        at com.android.okhttp.internal.http.StreamAllocation.deallocate(StreamAllocation.java:256)
+        at com.android.okhttp.internal.http.StreamAllocation.connectionFailed(StreamAllocation.java:293)
+        at com.android.okhttp.internal.http.HttpEngine.close(HttpEngine.java:445)
+        at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:509)
+        at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getResponse(HttpURLConnectionImpl.java:407)
+        at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getInputStream(HttpURLConnectionImpl.java:244)
+        at com.android.okhttp.internal.huc.DelegatingHttpsURLConnection.getInputStream(DelegatingHttpsURLConnection.java:210)
+        at com.android.okhttp.internal.huc.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:26)
+        at org.sos.MyProfileFragment$12.onResponse(MyProfileFragment.java:864)
+        at org.sos.MyProfileFragment$12.onResponse(MyProfileFragment.java:824)
+        at com.android.volley.toolbox.JsonRequest.deliverResponse(JsonRequest.java:90)
+        at com.android.volley.ExecutorDelivery$ResponseDeliveryRunnable.run(ExecutorDelivery.java:102)
+        at android.os.Handler.handleCallback(Handler.java:873)
+        at android.os.Handler.dispatchMessage(Handler.java:99)
+        at android.os.Looper.loop(Looper.java:193)
+        at android.app.ActivityThread.main(ActivityThread.java:6692)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+        
+        
+        
+        below is my code
+        
+        
+        try {
+          URL url = new URL(imageUrl);
+          HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+          connection.setDoInput(true);
+          connection.connect();
+          InputStream input = connection.getInputStream();
+          Bitmap myBitmap = BitmapFactory.decodeStream(input);
+          ivProfile.setImageBitmap(myBitmap);
+      } catch (IOException e) {
+          // Log exception
+
+      }
